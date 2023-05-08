@@ -12,6 +12,8 @@ class Queue(AbstractQueue):
         return self.data.append(value)
 
     def dequeue(self):
+        if len(self.data) == 0:
+            raise IndexError("Não há elementos")
         return self.data.pop(0)
 
     def search(self, index):

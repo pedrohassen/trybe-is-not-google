@@ -10,18 +10,24 @@ def process(path_file, instance):
     ]
 
     if path_file not in list_data:
-        processed_data = {
+        list_data = {
             "nome_do_arquivo": path_file,
             "qtd_linhas": len(data),
             "linhas_do_arquivo": data,
         }
 
-        instance.enqueue(processed_data)
-        sys.stdout.write(str(processed_data))
+        instance.enqueue(list_data)
+        sys.stdout.write(str(list_data))
 
 
 def remove(instance):
-    """Aqui irá sua implementação"""
+    if len(instance) == 0:
+        sys.stdout.write("Não há elementos\n")
+    else:
+        file_path = instance.dequeue()["nome_do_arquivo"]
+        sys.stdout.write(
+            f'Arquivo {file_path} removido com sucesso\n'
+        )
 
 
 def file_metadata(instance, position):
